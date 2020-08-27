@@ -1,0 +1,36 @@
+# Coupons
+type Coupon {
+  name: String!
+  code: String!
+  discount: Int!
+  expiresOn: Int!
+}
+
+input NewCouponInput {
+  name: String!
+  code: String!
+  discount: Int!
+  expiresOn: Int!
+}
+
+input UpdateCouponInput {
+  name: String
+  code: String
+  discount: Int
+  expiresOn: Int
+}
+
+extend type Query {
+  coupons: [Coupon]!
+  coupon(id: ID!): Coupon!
+}
+
+extend type Mutation {
+  newCoupon(input: NewCouponInput!): Coupon!
+  updateCoupon(input: UpdateCouponInput!): Coupon!
+  removeCoupon(id: ID!): Coupon!
+}
+
+type Subscription {
+  couponAdded: Coupon
+}
